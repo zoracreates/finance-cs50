@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Price</th>
+                <th scope="col">Value</th>
+            </tr>
+          </thead>
+        <tbody>
+            {% for stock in stocks %}
+                {% if stock["shares"] > 0 %}
+                    <tr>
+                        <td>{{ stock["symbol"] }}</td>
+                        <td>{{ stock["shares"] }}</td>
+                        <td>${{ stock["price"] }}</td>
+                        <td>${{ stock["value"] }}</td>
+
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            <tr>
+                <th scope="row" colspan="3" class="text-right">Money in shares</td>
+                <td>${{ total_shares }}</td>
+            </tr>
+            <tr>
+                <th scope="row" colspan="3" class="text-right">Money in Cash</td>
+                <td>${{ cash }}</td>
+            </tr>
+            <tr>
+                <th scope="row" colspan="3" class="text-right">Total</td>
+                <td>${{ total }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
